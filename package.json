@@ -4,7 +4,6 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "heroku-postbuild": "ng build --prod"
@@ -12,10 +11,8 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~12.0.0",
-    "@angular/cli": "^12.0.1",
     "@angular/common": "~12.0.0",
     "@angular/compiler": "~12.0.0",
-    "@angular/compiler-cli": "~12.0.0",
     "@angular/core": "~12.0.0",
     "@angular/forms": "~12.0.0",
     "@angular/platform-browser": "~12.0.0",
@@ -25,8 +22,8 @@
     "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
-    "zone.js": "~0.11.4",
-    "typescript": "~4.2.3"
+    "typescript": "~4.2.3",
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.0.0",
@@ -43,7 +40,7 @@
     "typescript": "~4.2.3"
   },
   "engines": {
-    "node": "6.11.0",
-    "npm": "3.10.10"
+    "node": "12.18.2",
+    "npm": "6.14.5"
   }
 }
