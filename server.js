@@ -7,7 +7,7 @@ const app = express();
 // Serve only the static files form the dist directory
 
 app.get('*', (req, res) =>
-    res.sendFile('/src/app/app.component.html'),
+    res.sendFile('app.component.html', { root: path.join(__dirname, './app') }),
 );
 
 // Start the app by listening on the default Heroku port
