@@ -1,1 +1,26 @@
-<p *ngIf="post">{{post.page}}|{{post.likes}}</p>
+<div *ngIf="post">
+
+    <div class="contentbox">
+        <div class="page_name"><img src={{post.profile_img_url}}>
+            <h3>{{post.page}}</h3>
+        </div>
+        <div class="post_pic">
+            <img class="thumb" src={{post.thumbnail_img_url}}>"
+            <div class="post_desc">{{post.text}}</div>
+            <div class="lsc_ind">
+                <img src="../../assets/likes.png">
+                <div class="likes">{{post.likes}}</div>
+
+                <img src="../../assets/shares.png">
+                <div class="shares">{{post.shares}}</div>
+
+                <img src="../../assets/comments.png">
+                <div class="comments">{{post.comments}}</div>
+
+                <div class="lm1" style="padding-top: 0; height: 100%; margin-top: 0px;">
+                    <button class="lm_btn" style="vertical-align:middle">
+                        <span>Link </span>
+                    </button>
+                </div>
+            </div>
+        </div>
