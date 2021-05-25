@@ -8,17 +8,17 @@
             <img class="thumb" src={{post.thumbnail_img_url}}>"
             <div class="post_desc">{{post.text}}</div>
             <div class="lsc_ind">
-                <img src="../../assets/likes.png">
+                <img src="../../assets/img/likes.png">
                 <div class="likes">{{post.likes}}</div>
 
-                <img src="../../assets/shares.png">
+                <img src="../../assets/img/shares.png">
                 <div class="shares">{{post.shares}}</div>
 
-                <img src="../../assets/comments.png">
+                <img src="../../assets/img/comments.png">
                 <div class="comments">{{post.comments}}</div>
 
                 <div class="lm1" style="padding-top: 0; height: 100%; margin-top: 0px;">
-                    <button class="lm_btn" style="vertical-align:middle">
+                    <button class="lm_btn" style="vertical-align:middle" (click)="openFacebookUrl()">
                         <span>Link </span>
                     </button>
                 </div>

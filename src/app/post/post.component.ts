@@ -15,4 +15,11 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openFacebookUrl() {
+    if (this.post) {
+      window.open(
+        this.post.url, "_blank");
+    }
+  }
+
 }
