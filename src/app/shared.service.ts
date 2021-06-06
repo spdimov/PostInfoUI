@@ -10,9 +10,8 @@ export class SharedService {
   private likes = new Subject<any>();
   private shares = new Subject<any>();
   private comments = new Subject<any>();
-
+  
   constructor() { }
-
   sendSortByPageEvent() {
     this.pageName.next();
   }
