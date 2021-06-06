@@ -1,11 +1,11 @@
 .contentbox {
   height: fit-content;
   width: 400px;
-  border-radius: var(--main-radius);
+  border-radius: 20px;
   text-align: left;
   background-color: purple;
-  margin: var(--main-margin) var(--main-margin) var(--main-margin)
-    var(--main-margin);
+  margin: 5px 5px 5px
+    5px;
   -webkit-box-shadow: 0 8px 6px -6px #999;
   -moz-box-shadow: 0 8px 6px -6px #999;
   box-shadow: 0 8px 6px -6px #999;
@@ -17,8 +17,8 @@
 }
 .page_name {
   text-align: left;
-  margin-left: var(--main-margin);
-  margin-top: var(--main-margin);
+  margin-left: 5px;
+  margin-top: 5px;
   display: grid;
   grid-template-rows: 50px;
   grid-template-columns: 50px auto;
@@ -33,7 +33,7 @@
   width: 50px;
   height: 50px;
   border-radius: 40%;
-  margin-left: var(--main-margin);
+  margin-left: 5px;
 }
 .post_pic {
   position: relative;
@@ -71,12 +71,12 @@
   grid-template-rows: 100%;
   vertical-align: text-bottom;
   margin-left: 0;
-  margin-top: var(--main-margin);
+  margin-top: 5px;
   margin-bottom: 0;
   background: green;
-  border-top-right-radius: var(--main-radius);
-  border-bottom-left-radius: var(--main-radius);
-  border-bottom-right-radius: var(--main-radius);
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 .lsc_ind > div {
   display: table-cell;
@@ -98,7 +98,7 @@
 }
 .lm_btn {
   display: table-cell;
-  border-radius: var(--main-radius);
+  border-radius: 20px;
   background-color: #f4511e;
   border: none;
   color: #ffffff;

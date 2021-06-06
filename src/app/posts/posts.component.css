@@ -1,10 +1,9 @@
 .content {
-  margin-left: 200px;
   padding: 1px 16px;
   background:#6fffd2;
   grid-area:content;
-  border-radius:var(--main-radius);
-  padding-top:var(--main-padding);
+  border-radius: 20px;
+  padding-top: 5px;
   text-align: center;
   align-items: stretch;
   justify-content: center;
