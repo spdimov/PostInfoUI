@@ -8,6 +8,8 @@ export class SharedService {
 
   private pageName = new Subject<any>();
   private likes = new Subject<any>();
+  private shares = new Subject<any>();
+  private comments = new Subject<any>();
 
   constructor() { }
 
@@ -25,5 +27,21 @@ export class SharedService {
 
   getSortByLikesEvent(): Observable<any> {
     return this.likes.asObservable();
+  }
+
+  sendSortBySharesEvent(){
+    this.shares.next();
+  }
+
+  getSortBySharesEvent(){
+    return this.shares.asObservable();
+  }
+
+  sendSortByCommentsEvent(){
+    this.comments.next();
+  }
+
+  getSortByCommentsEvent(){
+    return this.comments.asObservable();
   }
 }

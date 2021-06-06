@@ -21,4 +21,11 @@ export class SidenavComponent implements OnInit {
     this.sharedService.sendSortByLikesEvent();
   }
 
+  sortByShares(){
+    this.sharedService.sendSortBySharesEvent();
+  }
+
+  sortByComments(){
+    this.sharedService.sendSortByCommentsEvent();
+  }
 }

@@ -21,6 +21,8 @@ export class PostsComponent implements OnInit {
     ) {
       this.clickEventSubscription = this.sharedService.getSortByPageEvent().subscribe(()=>{this.sortByPageName();})
       this.clickEventSubscription = this.sharedService.getSortByLikesEvent().subscribe(()=>{this.sortByLikes();})
+      this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(()=> {this.sortByShares();})
+      this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(()=> {this.sortByComments();})
      }
 
   
@@ -45,6 +47,22 @@ export class PostsComponent implements OnInit {
     this.posts.sort((a, b) => {
       if (a.likes < b.likes) { return 1; }
       if (a.likes > b.likes) { return -1; }
+      return 0;
+    });
+  }
+
+  sortByShares(): void{
+    this.posts.sort((a, b) => {
+      if (a.shares < b.shares) { return 1; }
+      if (a.shares > b.shares) { return -1; }
+      return 0;
+    });
+  }
+
+  sortByComments(): void{
+    this.posts.sort((a, b) => {
+      if (a.comments < b.comments) { return 1; }
+      if (a.comments > b.comments) { return -1; }
       return 0;
     });
   }
