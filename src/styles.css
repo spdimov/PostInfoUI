@@ -1,16 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-@media only screen and (max-width:650px){
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  overflow-x: hidden;}
+@media only screen and (max-width:1000px){
     .container{
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr 6fr 1fr;
+      grid-template-rows: 1fr 1fr 6fr;
       grid-template-areas: 
         "sidebar"
         "main"
         "content"
-        "footer"
     }
   
     #sidebar{

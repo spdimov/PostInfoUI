@@ -1,7 +1,13 @@
 <div class="sidebar">
-    <button (click)="sortByPage()">Page name</button>
+    Search by Keyword
+    <input type="text">
+    <button (click)="sortByPage()">Page name</button><br>
+    Sort by<br>
     <button (click)="sortByLikes()">Likes</button>
-    <div id="limitby"> Limit by
+    <button (click)="sortByShares()">Shares</button>
+    <button (click)="sortByComments()">Comments</button>
+    
+    <div id="limitby"> Limit by<br>
       <select class="custom-select" id="inputGroupSelect04" name="month">
           <option selected value="none">Month</option>
           <option value="1">January</option>
@@ -20,4 +26,3 @@
     </div>
     <input type="submit" value="Submit" name="submit">
   </div>
-  
