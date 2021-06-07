@@ -8,14 +8,4 @@ import { Post } from './post';
 })
 export class AppComponent {
   title = 'postinfo';
-  onScroll(){
-  let pos =(document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-  let max = document.documentElement.scrollHeight;
-  
-  if ( pos >= max ) {
-    console.log("scrolled to bottom");
-  }
-  }
-  
-
 }

@@ -12,6 +12,15 @@ import { HostListener } from '@angular/core';
 })
 export class PostsComponent implements OnInit {
   public show = 20;
+  onScroll(){
+    let pos =(document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+    let max = document.documentElement.scrollHeight;
+    
+    if ( pos >= max ) {
+      this.show= this.show + 20;
+      console.log("scrolled to bottom");
+    }
+    }
   clickEventSubscription:Subscription | undefined;
 
   posts: Post[] = []
