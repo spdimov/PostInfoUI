@@ -29,10 +29,10 @@ export class PostsComponent implements OnInit {
     private postsService: PostsService,
     private sharedService:SharedService
     ) {
-      this.clickEventSubscription = this.sharedService.getSortByPageEvent().subscribe(()=>{this.sortByPageName();})
-      this.clickEventSubscription = this.sharedService.getSortByLikesEvent().subscribe(()=>{this.sortByLikes();})
-      this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(()=> {this.sortByShares();})
-      this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(()=> {this.sortByComments();})
+      this.clickEventSubscription = this.sharedService.getSortByPageEvent().subscribe(()=>{this.sortByPageName(); this.show=20;})
+      this.clickEventSubscription = this.sharedService.getSortByLikesEvent().subscribe(()=>{this.sortByLikes(); this.show=20;})
+      this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(()=> {this.sortByShares(); this.show=20;})
+      this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(()=> {this.sortByComments(); this.show=20;})
      }
 
   

@@ -3,7 +3,7 @@
   width: 400px;
   border-radius: 20px;
   text-align: left;
-  background-color: purple;
+  background-color: #8EE4AF;
   margin: 5px 5px 5px
     5px;
   -webkit-box-shadow: 0 8px 6px -6px #999;
@@ -73,7 +73,7 @@
   margin-left: 0;
   margin-top: 5px;
   margin-bottom: 0;
-  background: green;
+  background: #5CDB95;
   border-top-right-radius: 20px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -99,7 +99,7 @@
 .lm_btn {
   display: table-cell;
   border-radius: 20px;
-  background-color: #f4511e;
+  background-color: #05386B;
   border: none;
   color: #ffffff;
   text-align: center;

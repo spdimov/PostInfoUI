@@ -3,12 +3,17 @@
     display:grid;
     height:100vh;
     grid-template-columns: 0.5fr 3fr;
-    grid-template-rows: 1fr 1.5fr 3fr 0.8fr;
+    grid-template-rows: 1fr;
     grid-template-areas:
-      "sidebar main"
-      "sidebar main"
-      "sidebar content"
-      "sidebar footer";
-      grid-gap: 0.1rem;
+      "sidebar content";
       text-align: center;
+  }
+  @media only screen and (max-width:700px){
+    .container{
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 6fr;
+      grid-template-areas: 
+        "sidebar"
+        "content"
+    }
   }
