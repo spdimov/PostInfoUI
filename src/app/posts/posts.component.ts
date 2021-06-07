@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Post } from '../post';
 import { PostsService } from '../posts.service';
 import { SharedService } from '../shared.service';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'posts',
@@ -10,7 +11,7 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-
+  public show = 20;
   clickEventSubscription:Subscription | undefined;
 
   posts: Post[] = []
