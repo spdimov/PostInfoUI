@@ -7,6 +7,13 @@
     <button (click)="sortByLikes()">Likes</button>
     <button (click)="sortByShares()">Shares</button>
     <button (click)="sortByComments()">Comments</button>
+
+    Limit Likes
+    <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
+    Limit Shares
+    <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
+    Limit Comments
+    <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
     
     <div id="limitby"> Limit by<br>
       <select class="custom-select" id="inputGroupSelect04" name="month">

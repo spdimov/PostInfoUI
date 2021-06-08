@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
+import { Options } from "@angular-slider/ngx-slider";
 
 @Component({
   selector: 'sidenav',
@@ -7,6 +8,14 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
+  
+  value: number = 0;
+  highValue: number = 100;
+  options: Options = {
+    floor: 0,
+    ceil: 100,
+    step: 10
+  };
 
   constructor(private sharedService:SharedService) { }
 
@@ -27,4 +36,5 @@ export class SidenavComponent implements OnInit {
   sortByComments(){
     this.sharedService.sendSortByCommentsEvent();
   }
+  
 }

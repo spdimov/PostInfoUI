@@ -18,7 +18,6 @@ export class PostsComponent implements OnInit {
     
     if ( pos >= max ) {
       this.show= this.show + 20;
-      console.log("scrolled to bottom");
     }
     }
   clickEventSubscription:Subscription | undefined;

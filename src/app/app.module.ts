@@ -12,7 +12,8 @@ import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ConvertNumberPipe } from './pipes/convert-number.pipe';
-
+import { FormsModule } from "@angular/forms";
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,9 @@ import { ConvertNumberPipe } from './pipes/convert-number.pipe';
   imports: [
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    NgxSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
