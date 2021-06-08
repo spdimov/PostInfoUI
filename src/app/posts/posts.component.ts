@@ -11,18 +11,9 @@ import { HostListener } from '@angular/core';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  public show = 20;
-  onScroll(){
-    let pos =(document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-    let max = document.documentElement.scrollHeight;
-    
-    if ( pos >= max ) {
-      this.show= this.show + 20;
-      console.log("scrolled to bottom");
-    }
-    }
-  clickEventSubscription:Subscription | undefined;
 
+  public show = 20;
+  clickEventSubscription:Subscription | undefined;
   posts: Post[] = []
 
   constructor(
@@ -34,8 +25,6 @@ export class PostsComponent implements OnInit {
       this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(()=> {this.sortByShares(); this.show=20;})
       this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(()=> {this.sortByComments(); this.show=20;})
      }
-
-  
 
   ngOnInit(): void {
     this.getPosts();
@@ -76,4 +65,13 @@ export class PostsComponent implements OnInit {
       return 0;
     });
   }
+
+  onScroll(){
+    let pos =(document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+    let max = document.documentElement.scrollHeight;
+    
+    if ( pos >= max ) {
+      this.show= this.show + 20;
+    }
+    }
 }
