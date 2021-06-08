@@ -11,7 +11,7 @@ export class SharedService {
   private likes = new Subject<any>();
   private shares = new Subject<any>();
   private comments = new Subject<any>();
-  private keywords = new Subject<string[]>();
+  private keywords = new Subject<string>();
   
   constructor() { }
   sendSortByPageEvent() {
@@ -46,8 +46,8 @@ export class SharedService {
     return this.comments.asObservable();
   }
 
-  sendSearchByKewords(keywords:string[]){
-    this.keywords.next();
+  sendSearchByKewords(keywords:string){
+    this.keywords.next(keywords);
   }
 
   getSearchByKeywords(){

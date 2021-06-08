@@ -25,7 +25,7 @@ export class PostsComponent implements OnInit {
     this.clickEventSubscription = this.sharedService.getSortByLikesEvent().subscribe(() => { this.sortByLikes(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(() => { this.sortByShares(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(() => { this.sortByComments(); this.show = 20; })
-    this.clickEventSubscription = this.sharedService.getSearchByKeywords().subscribe(keywords => {this.getByKeywords(keywords); this.show=20;})
+    this.clickEventSubscription = this.sharedService.getSearchByKeywords().subscribe(keywords => {console.log(keywords); this.getByKeywords(keywords); this.show=20;})
   }
 
   ngOnInit(): void {
@@ -68,15 +68,17 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  getByKeywords(keywords:string[]):void{
+  getByKeywords(keywords:string):void{
+    var keywordsArr = keywords.split(" ");
+  
     this.posts.forEach(post => {
-      keywords.forEach(keyword => {
+      keywordsArr.forEach(keyword => {
         if(post.page.includes(keyword)){
           this.searchResult.push(post);
         }
       });
     });
-    console.log(this.searchResult);
+    
     this.posts = this.searchResult;
   }
 

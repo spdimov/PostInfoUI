@@ -47,7 +47,7 @@ export class SidenavComponent implements OnInit {
   };
 
   @Input()
-  private keywords: string[] | undefined;
+  private keywords: string | undefined
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
@@ -78,8 +78,10 @@ export class SidenavComponent implements OnInit {
     this.sharedService.sendSortByCommentsEvent();
   }
 
-  sortByKeywords(keywords: string[]) {
-    this.sharedService.sendSearchByKewords(keywords);
+  sortByKeywords() {
+    if(this.keywords){
+    this.sharedService.sendSearchByKewords(this.keywords);
+    }
   }
   
 }
