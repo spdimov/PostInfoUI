@@ -32,24 +32,24 @@
     </select>
   </div>
   <input type="submit" value="Submit" name="Reset">
+
+  <img src="assets/img/logo.png">
+  Search by Keyword<br>
+  <input type="text">
+  <button (click)="sortByPage()">Page name</button><br>
+  Sort by<br>
+  <button (click)="sortByLikes()">Likes</button>
+  <button (click)="sortByShares()">Shares</button>
+  <button (click)="sortByComments()">Comments</button>
+
+  Limit Likes
+  <ngx-slider [(value)]="valueLikes" [(highValue)]="highValueLikes" [options]="optionsLikes"></ngx-slider>
+  Limit Shares
+  <ngx-slider [(value)]="valueShares" [(highValue)]="highValueShares" [options]="optionsShares"></ngx-slider>
+  Limit Comments
+  <ngx-slider [(value)]="valueComments" [(highValue)]="highValueComments" [options]="optionsComments"></ngx-slider>
+  Limit by<br>
+  <ngx-slider [(value)]="value" [options]="optionsDate"></ngx-slider>
+
+  <input type="submit" value="Submit" name="Reset">
 </div>
-    <img src="assets/img/logo.png">
-    Search by Keyword<br>
-    <input type="text">
-    <button (click)="sortByPage()">Page name</button><br>
-    Sort by<br>
-    <button (click)="sortByLikes()">Likes</button>
-    <button (click)="sortByShares()">Shares</button>
-    <button (click)="sortByComments()">Comments</button>
-
-    Limit Likes
-    <ngx-slider [(value)]="valueLikes" [(highValue)]="highValueLikes" [options]="optionsLikes"></ngx-slider>
-    Limit Shares
-    <ngx-slider [(value)]="valueShares" [(highValue)]="highValueShares" [options]="optionsShares"></ngx-slider>
-    Limit Comments
-    <ngx-slider [(value)]="valueComments" [(highValue)]="highValueComments" [options]="optionsComments"></ngx-slider>
-    Limit by<br>
-    <ngx-slider [(value)]="value" [options]="optionsDate"></ngx-slider>
-
-    <input type="submit" value="Submit" name="Reset">
-  </div>
