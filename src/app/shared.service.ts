@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
 import { Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -10,6 +11,7 @@ export class SharedService {
   private likes = new Subject<any>();
   private shares = new Subject<any>();
   private comments = new Subject<any>();
+  private keywords = new Subject<string[]>();
   
   constructor() { }
   sendSortByPageEvent() {
@@ -42,5 +44,13 @@ export class SharedService {
 
   getSortByCommentsEvent(){
     return this.comments.asObservable();
+  }
+
+  sendSearchByKewords(keywords:string[]){
+    this.keywords.next();
+  }
+
+  getSearchByKeywords(){
+    return this.keywords.asObservable();
   }
 }
