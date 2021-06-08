@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ConvertNumberPipe implements PipeTransform {
 
   transform(number: number, args?: any): any {
-    if (isNaN(number)) return null; // will only work value is a number
+    if (isNaN(number)) return null;
     if (number === null) return null;
     if (number === 0) return 0;
     let abs = Math.abs(number);

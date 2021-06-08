@@ -11,30 +11,20 @@ import { HostListener } from '@angular/core';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  public show = 20;
-  onScroll(){
-    let pos =(document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-    let max = document.documentElement.scrollHeight;
-    
-    if ( pos >= max ) {
-      this.show= this.show + 20;
-    }
-    }
-  clickEventSubscription:Subscription | undefined;
 
+  public show = 20;
+  clickEventSubscription: Subscription | undefined;
   posts: Post[] = []
 
   constructor(
     private postsService: PostsService,
-    private sharedService:SharedService
-    ) {
-      this.clickEventSubscription = this.sharedService.getSortByPageEvent().subscribe(()=>{this.sortByPageName(); this.show=20;})
-      this.clickEventSubscription = this.sharedService.getSortByLikesEvent().subscribe(()=>{this.sortByLikes(); this.show=20;})
-      this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(()=> {this.sortByShares(); this.show=20;})
-      this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(()=> {this.sortByComments(); this.show=20;})
-     }
-
-  
+    private sharedService: SharedService
+  ) {
+    this.clickEventSubscription = this.sharedService.getSortByPageEvent().subscribe(() => { this.sortByPageName(); this.show = 20; })
+    this.clickEventSubscription = this.sharedService.getSortByLikesEvent().subscribe(() => { this.sortByLikes(); this.show = 20; })
+    this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(() => { this.sortByShares(); this.show = 20; })
+    this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(() => { this.sortByComments(); this.show = 20; })
+  }
 
   ngOnInit(): void {
     this.getPosts();
@@ -60,7 +50,7 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  sortByShares(): void{
+  sortByShares(): void {
     this.posts.sort((a, b) => {
       if (a.shares < b.shares) { return 1; }
       if (a.shares > b.shares) { return -1; }
@@ -68,11 +58,27 @@ export class PostsComponent implements OnInit {
     });
   }
 
-  sortByComments(): void{
+  sortByComments(): void {
     this.posts.sort((a, b) => {
       if (a.comments < b.comments) { return 1; }
       if (a.comments > b.comments) { return -1; }
       return 0;
     });
   }
+
+  getByKeywords(keywords:string[]):void{
+    this.posts.forEach(post => {
+      if(post.)
+    });
+  }
+
+  onScroll() {
+    let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+    let max = document.documentElement.scrollHeight;
+
+    if (pos >= max) {
+      this.show = this.show + 20;
+    }
+  }
+
 }
