@@ -15,6 +15,7 @@ export class PostsComponent implements OnInit {
   public show = 20;
   clickEventSubscription: Subscription | undefined;
   posts: Post[] = []
+  searchResult:Post[]=[]
 
   constructor(
     private postsService: PostsService,
@@ -24,6 +25,7 @@ export class PostsComponent implements OnInit {
     this.clickEventSubscription = this.sharedService.getSortByLikesEvent().subscribe(() => { this.sortByLikes(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(() => { this.sortByShares(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(() => { this.sortByComments(); this.show = 20; })
+    this.clickEventSubscription = this.sharedService.getSearchByKeywords().subscribe(keywords => {this.getByKeywords(keywords); this.show=20;})
   }
 
   ngOnInit(): void {
@@ -68,8 +70,14 @@ export class PostsComponent implements OnInit {
 
   getByKeywords(keywords:string[]):void{
     this.posts.forEach(post => {
-      if(post.)
+      keywords.forEach(keyword => {
+        if(post.page.includes(keyword)){
+          this.searchResult.push(post);
+        }
+      });
     });
+    console.log(this.searchResult);
+    this.posts = this.searchResult;
   }
 
   onScroll() {

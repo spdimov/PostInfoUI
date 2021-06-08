@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 
 @Component({
@@ -8,23 +8,29 @@ import { SharedService } from '../shared.service';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor(private sharedService:SharedService) { }
+  @Input()
+  private keywords: string[] | undefined;
+  constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
   }
-  sortByPage(){
+  sortByPage() {
     this.sharedService.sendSortByPageEvent();
   }
 
-  sortByLikes(){
+  sortByLikes() {
     this.sharedService.sendSortByLikesEvent();
   }
 
-  sortByShares(){
+  sortByShares() {
     this.sharedService.sendSortBySharesEvent();
   }
 
-  sortByComments(){
+  sortByComments() {
     this.sharedService.sendSortByCommentsEvent();
+  }
+
+  sortByKeywords(keywords: string[]) {
+    this.sharedService.sendSearchByKewords(keywords);
   }
 }
