@@ -68,7 +68,7 @@ export class PostsComponent implements OnInit {
 
   getByKeywords(keywords:string[]):void{
     this.posts.forEach(post => {
-      if(post.)
+     //g if(post.)
     });
   }
 
