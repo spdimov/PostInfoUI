@@ -1,17 +1,17 @@
 <div class="sidebar">
   <img src="assets/img/logo.png">
   Search by Keyword<br>
-  <input type="text">
-  <button (click)="sortByPage()">Page name</button><br>
+  <form action="">
+    <input type="text" [(ngModel)]="keywords" [ngModelOptions]="{standalone: true}">
+    {{keywords}}
+    <button (click)="sortByKeywords()">Search</button>
+  </form>
+  
   Sort by<br>
   <button (click)="sortByLikes()">Likes</button>
   <button (click)="sortByShares()">Shares</button>
   <button (click)="sortByComments()">Comments</button>
-  <form action="">
-    <input type="text" [(ngModel)]="keywords" [ngModelOptions]="{standalone: true}">
-    {{keywords}}
-    <button (click)="sortByKeywords()">butone</button>
-  </form>
+  <button (click)="sortByPage()">Page name</button><br>
 
   Limit Likes
   <ngx-slider [(value)]="valueLikes" [(highValue)]="highValueLikes" [options]="optionsLikes"></ngx-slider>

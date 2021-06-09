@@ -73,7 +73,7 @@ export class PostsComponent implements OnInit {
   
     this.posts.forEach(post => {
       keywordsArr.forEach(keyword => {
-        if(post.page.includes(keyword)){
+        if(post.page.toUpperCase().includes(keyword.toUpperCase())){
           this.searchResult.push(post);
         }
       });
