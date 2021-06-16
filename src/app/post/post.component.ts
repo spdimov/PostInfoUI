@@ -6,15 +6,13 @@ import { Post } from '../post';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent implements OnInit {
 
+export class PostComponent implements OnInit {
   @Input() post: Post | undefined;
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
   openFacebookUrl() {
     if (this.post) {
       window.open(
