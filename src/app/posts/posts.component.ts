@@ -15,6 +15,7 @@ export class PostsComponent implements OnInit {
   public show = 20;
   clickEventSubscription: Subscription | undefined;
   posts: Post[] = []
+  postsCopy:Post[] = []
   searchResult:Post[]=[]
 
   constructor(
@@ -33,7 +34,7 @@ export class PostsComponent implements OnInit {
   }
 
   getPosts(): void {
-    this.postsService.getPosts().subscribe(posts => this.posts = posts);
+    this.postsService.getPosts().subscribe(posts => {this.posts = posts; this.postsCopy = posts});
   }
 
   sortByPageName(): void {
@@ -69,6 +70,8 @@ export class PostsComponent implements OnInit {
   }
 
   getByKeywords(keywords:string):void{
+    this.posts=this.postsCopy;
+    this.searchResult = [];
     var keywordsArr = keywords.split(" ");
   
     this.posts.forEach(post => {
