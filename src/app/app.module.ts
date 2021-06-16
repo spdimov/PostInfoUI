@@ -10,6 +10,8 @@ import { PostsComponent } from './posts/posts.component';
 import { PostComponent } from './post/post.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ConvertNumberPipe } from './pipes/convert-number.pipe';
+import { ConvertURLPipe } from './pipes/convert-url.pipe';
+import { ConvertURLthumbPipe } from './pipes/convert-urlthumb.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ConvertNumberPipe } from './pipes/convert-number.pipe';
     PostsComponent,
     PostComponent,
     SidenavComponent,
-    ConvertNumberPipe
+    ConvertNumberPipe,
+    ConvertURLPipe,
+    ConvertURLthumbPipe
   ],
   imports: [
     BrowserModule,
