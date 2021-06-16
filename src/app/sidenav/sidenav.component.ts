@@ -35,8 +35,8 @@ export class SidenavComponent implements OnInit {
   };
 
   dateRange: Date[] = this.customDateRange();
-  value: number = this.dateRange[0].getTime();
-
+  value: number = this.dateRange[0].getMonth();
+  highValueDate: number = this.dateRange[1].getTime();
   optionsDate: Options = {
     stepsArray: this.dateRange.map((date: Date) => {
       return { value: date.getTime() };

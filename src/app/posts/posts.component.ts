@@ -11,7 +11,6 @@ import { HostListener } from '@angular/core';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-
   public show = 20;
   clickEventSubscription: Subscription | undefined;
   posts: Post[] = []
@@ -31,11 +30,9 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.getPosts();
   }
-
-  getPosts(): void {
+ getPosts(): void {
     this.postsService.getPosts().subscribe(posts => this.posts = posts);
   }
-
   sortByPageName(): void {
     this.posts.sort((a, b) => {
       if (a.page < b.page) { return -1; }
@@ -67,7 +64,6 @@ export class PostsComponent implements OnInit {
       return 0;
     });
   }
-
   getByKeywords(keywords:string):void{
     var keywordsArr = keywords.split(" ");
   
