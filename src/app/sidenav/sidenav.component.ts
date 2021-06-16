@@ -56,10 +56,24 @@ export class SidenavComponent implements OnInit {
 
   customDateRange(): Date[] {
     const dates: Date[] = [];
-    for (let i: number = 1; i <= 31; i++) {
-      dates.push(new Date(2021, 6, i));
+    var today = new Date;
+    var currYear : number = +today.getFullYear();
+    for (let j: number = 0; j < 12; j++){
+      for (let i: number = 1; i <=  31; i++) {
+       dates.push(new Date(currYear-1, j, i));
+     }
+    }
+    loop1:
+    for (let j: number = 0; j < 12; j++){
+    loop2:
+      for (let i: number = 0; i < 31; i++) {
+        dates.push(new Date(currYear, j, i));
+       if (j==today.getMonth() && i==today.getDate()) break loop1;
+     }
     }
     return dates;
+    
+    
   }
 
   sortByPage(){
