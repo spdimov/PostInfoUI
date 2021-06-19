@@ -81,6 +81,7 @@ export class PostsComponent implements OnInit {
   getByKeywords(keywords:string):void{
     this.posts=this.postsCopy;
     this.searchResult = [];
+    keywords = keywords.trim();
     var keywordsArr = keywords.split(" ");
   
     this.posts.forEach(post => {
