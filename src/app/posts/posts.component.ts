@@ -4,6 +4,7 @@ import { Post } from '../post';
 import { PostsService } from '../posts.service';
 import { SharedService } from '../shared.service';
 import { HostListener } from '@angular/core';
+import { MinLengthValidator } from '@angular/forms';
 
 @Component({
   selector: 'posts',
@@ -19,7 +20,7 @@ export class PostsComponent implements OnInit {
 
   constructor(
     private postsService: PostsService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
   ) {
     this.clickEventSubscription = this.sharedService.getSortByPageEvent().subscribe(() => { this.sortByPageName(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortByLikesEvent().subscribe(() => { this.sortByLikes(); this.show = 20; })
@@ -27,9 +28,20 @@ export class PostsComponent implements OnInit {
     this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(() => { this.sortByComments(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSearchByKeywords().subscribe(keywords => {console.log(keywords); this.getByKeywords(keywords); this.show=20;})
   }
-
+  
   ngOnInit(): void {
     this.getPosts();
+  }
+  getMinMaxLikes() : [number,number] {
+    console.log(this.posts[1]);
+    this.postsCopy.sort((a, b) => {
+      if (a.likes < b.likes) { return 1; }
+      if (a.likes > b.likes) { return -1; }
+      return 0;
+    });
+    let max = this.postsCopy[0].likes;
+    let min = this.postsCopy[this.postsCopy.length-1].likes;
+    return [min,max];
   }
 
   getPosts(): void {

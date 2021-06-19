@@ -1,14 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { Options,LabelType } from "@angular-slider/ngx-slider";
-
+import { PostsComponent } from '../posts/posts.component';
 @Component({
   selector: 'sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
+
 export class SidenavComponent implements OnInit {
-  
   valueLikes: number = 0;
   highValueLikes: number = 100;
   optionsLikes: Options = {
@@ -16,7 +16,7 @@ export class SidenavComponent implements OnInit {
     ceil: 100,
     step: 10
   };
-  
+
   valueComments: number = 0;
   highValueComments: number = 100;
   optionsComments: Options = {
@@ -49,7 +49,6 @@ export class SidenavComponent implements OnInit {
   @Input()
   private keywords: string | undefined
   constructor(private sharedService: SharedService) { }
-
   ngOnInit(): void {
   }
 
@@ -91,11 +90,9 @@ export class SidenavComponent implements OnInit {
   sortByComments() {
     this.sharedService.sendSortByCommentsEvent();
   }
-
   sortByKeywords() {
     if(this.keywords){
     this.sharedService.sendSearchByKewords(this.keywords);
     }
   }
-  
 }
