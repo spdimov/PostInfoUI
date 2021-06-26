@@ -80,7 +80,10 @@ export class SidenavComponent implements OnInit {
 
 
   }
-
+  updateType(){
+    console.log("success");
+    this.sharedService.sendUpdateTypeEvent(this.selectedType);
+  }
   sortByPage() {
     this.sharedService.sendSortByPageEvent();
   }

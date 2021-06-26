@@ -28,13 +28,29 @@ export class PostsComponent implements OnInit {
     this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(() => { this.sortByShares(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(() => { this.sortByComments(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSearchByKeywords().subscribe(keywords => { this.getByKeywords(keywords); this.show = 20;})
-    this.clickEventSubscription = this.sharedService.getLimitLikes().subscribe(limit => {console.log(limit);this.limitByLikes(limit); this.show = 20;})
+    this.clickEventSubscription = this.sharedService.getLimitLikes().subscribe(limit => {this.limitByLikes(limit); this.show = 20;})
+    this.clickEventSubscription = this.sharedService.getUpdateTypeEvent().subscribe(selectedType => {this.updateType(selectedType); this.show=20;})
   }
 
   ngOnInit(): void {
     this.getPosts();
   }
+  updateType(selectedType: number): void{
+    this.posts = this.postsCopy;
+    this.searchResult = [];
 
+    this.posts.forEach(post => {
+        if (post.type==selectedType || selectedType==2) {
+          this.searchResult.push(post);
+        }
+    });
+    this.posts = this.searchResult;
+  }
+ /* postType() : boolean{
+    if (selectedType == 2) return true;
+    if ()
+    return false;
+  }*/
   getMinMaxLikes(): [number, number] {
     console.log(this.posts[1]);
     this.postsCopy.sort((a, b) => {
