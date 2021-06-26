@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Post } from './post';
 
@@ -8,11 +8,11 @@ import { Post } from './post';
 })
 export class PostsService {
 
-  private postsUrl="https://postinfoserver.herokuapp.com/posts";
+  private postsUrl = "https://postinfoserver.herokuapp.com/posts";
 
   constructor(private http: HttpClient) { }
 
- getPosts(): Observable<Post[]>{
+  getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(this.postsUrl);
   }
 }

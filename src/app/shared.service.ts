@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable, Subject } from 'rxjs';
+import { Limit } from './limit';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,11 @@ export class SharedService {
   private shares = new Subject<any>();
   private comments = new Subject<any>();
   private keywords = new Subject<string>();
+  private limit = new Subject<Limit>();
+
   
   constructor() { }
+
   sendSortByPageEvent() {
     this.pageName.next();
   }
@@ -52,5 +56,13 @@ export class SharedService {
 
   getSearchByKeywords(){
     return this.keywords.asObservable();
+  }
+
+  sendLimitLikes(limit:Limit){
+    this.limit.next(limit);
+  }
+
+  getLimitLikes(){
+    return this.limit.asObservable();
   }
 }
