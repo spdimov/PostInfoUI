@@ -117,7 +117,9 @@ export class PostsComponent implements OnInit {
 
   limitByLikes(limit: Limit): void {
     this.posts = this.postsCopy;
+    this.sortByLikes();
     this.limitResult = [];
+    
     this.posts.forEach(post => {
       if (post.likes < limit.top && post.likes > limit.bottom) {
         this.limitResult.push(post)
@@ -129,7 +131,9 @@ export class PostsComponent implements OnInit {
 
   limitByShares(limit: Limit): void {
     this.posts = this.postsCopy;
+    this.sortByShares();
     this.limitResult = [];
+
     this.posts.forEach(post => {
       if (post.shares < limit.top && post.shares > limit.bottom) {
         this.limitResult.push(post)
@@ -141,7 +145,9 @@ export class PostsComponent implements OnInit {
 
   limitByComments(limit: Limit): void {
     this.posts = this.postsCopy;
+    this.sortByComments();
     this.limitResult = [];
+
     this.posts.forEach(post => {
       if (post.comments < limit.top && post.comments > limit.bottom) {
         this.limitResult.push(post)
