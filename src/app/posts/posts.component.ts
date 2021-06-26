@@ -27,30 +27,29 @@ export class PostsComponent implements OnInit {
     this.clickEventSubscription = this.sharedService.getSortByLikesEvent().subscribe(() => { this.sortByLikes(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(() => { this.sortByShares(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(() => { this.sortByComments(); this.show = 20; })
-    this.clickEventSubscription = this.sharedService.getSearchByKeywords().subscribe(keywords => { this.getByKeywords(keywords); this.show = 20;})
-    this.clickEventSubscription = this.sharedService.getLimitLikes().subscribe(limit => {this.limitByLikes(limit); this.show = 20;})
-    this.clickEventSubscription = this.sharedService.getUpdateTypeEvent().subscribe(selectedType => {this.updateType(selectedType); this.show=20;})
+    this.clickEventSubscription = this.sharedService.getSearchByKeywords().subscribe(keywords => { this.getByKeywords(keywords); this.show = 20; })
+    this.clickEventSubscription = this.sharedService.getLimitLikes().subscribe(limit => { this.limitByLikes(limit); this.show = 20; })
+    this.clickEventSubscription = this.sharedService.getUpdateTypeEvent().subscribe(selectedType => { this.updateType(selectedType); this.show = 20; })
+    this.clickEventSubscription = this.sharedService.getLimitShares().subscribe(limit => { this.limitByShares(limit); this.show = 20; })
+    this.clickEventSubscription = this.sharedService.getLimitComments().subscribe(limit => { this.limitByComments(limit); this.show = 20; })
   }
 
   ngOnInit(): void {
     this.getPosts();
   }
-  updateType(selectedType: number): void{
+  
+  updateType(selectedType: number): void {
     this.posts = this.postsCopy;
     this.searchResult = [];
 
     this.posts.forEach(post => {
-        if (post.type==selectedType || selectedType==2) {
-          this.searchResult.push(post);
-        }
+      if (post.type == selectedType || selectedType == 2) {
+        this.searchResult.push(post);
+      }
     });
     this.posts = this.searchResult;
   }
- /* postType() : boolean{
-    if (selectedType == 2) return true;
-    if ()
-    return false;
-  }*/
+
   getMinMaxLikes(): [number, number] {
     console.log(this.posts[1]);
     this.postsCopy.sort((a, b) => {
@@ -64,7 +63,7 @@ export class PostsComponent implements OnInit {
   }
 
   async getPosts(): Promise<void> {
-    this.postsService.getPosts().subscribe(posts => { this.posts = posts; this.postsCopy = posts; console.log(new Date())});
+    this.postsService.getPosts().subscribe(posts => { this.posts = posts; this.postsCopy = posts; console.log(new Date()) });
   }
 
   sortByPageName(): void {
@@ -116,11 +115,35 @@ export class PostsComponent implements OnInit {
     this.posts = this.searchResult;
   }
 
-  limitByLikes(limit:Limit): void{
+  limitByLikes(limit: Limit): void {
     this.posts = this.postsCopy;
     this.limitResult = [];
-    this.posts.forEach(post =>{
-      if(post.likes<limit.top && post.likes>limit.bottom){
+    this.posts.forEach(post => {
+      if (post.likes < limit.top && post.likes > limit.bottom) {
+        this.limitResult.push(post)
+      }
+    });
+
+    this.posts = this.limitResult;
+  }
+
+  limitByShares(limit: Limit): void {
+    this.posts = this.postsCopy;
+    this.limitResult = [];
+    this.posts.forEach(post => {
+      if (post.shares < limit.top && post.shares > limit.bottom) {
+        this.limitResult.push(post)
+      }
+    });
+
+    this.posts = this.limitResult;
+  }
+
+  limitByComments(limit: Limit): void {
+    this.posts = this.postsCopy;
+    this.limitResult = [];
+    this.posts.forEach(post => {
+      if (post.comments < limit.top && post.comments > limit.bottom) {
         this.limitResult.push(post)
       }
     });

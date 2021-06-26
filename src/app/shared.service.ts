@@ -13,7 +13,9 @@ export class SharedService {
   private shares = new Subject<any>();
   private comments = new Subject<any>();
   private keywords = new Subject<string>();
-  private limit = new Subject<Limit>();
+  private limitLikes = new Subject<Limit>();
+  private limitShares = new Subject<Limit>();
+  private limitComments = new Subject<Limit>();
   private selectedType = new Subject<number>();
 
   
@@ -31,7 +33,7 @@ export class SharedService {
     this.likes.next();
   }
 
-  getSortByLikesEvent(): Observable<any> {
+  getSortByLikesEvent(){
     return this.likes.asObservable();
   }
 
@@ -62,14 +64,34 @@ export class SharedService {
   sendUpdateTypeEvent(selectedType: number) {
     this.selectedType.next(selectedType);
   }
-  getUpdateTypeEvent() : Observable<any>{
+
+  getUpdateTypeEvent(){
+    console.log("succ")
     return this.selectedType.asObservable();
   }
+
   sendLimitLikes(limit:Limit){
-    this.limit.next(limit);
+    this.limitLikes.next(limit);
   }
 
   getLimitLikes(){
-    return this.limit.asObservable();
+    return this.limitLikes.asObservable();
   }
+
+  sendLimitShares(limit:Limit){
+    this.limitShares.next(limit);
+  }
+
+  getLimitShares(){
+    return this.limitShares.asObservable();
+  }
+
+  sendLimitComments(limit:Limit){
+    this.limitComments.next(limit);
+  }
+
+  getLimitComments(){
+    return this.limitComments.asObservable();
+  }
+  
 }

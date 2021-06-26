@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
-import { Options,LabelType } from "@angular-slider/ngx-slider";
-import {MatRadioModule} from '@angular/material/radio';
+import { Options, LabelType } from "@angular-slider/ngx-slider";
+import { MatRadioModule } from '@angular/material/radio';
 import { PostsComponent } from '../posts/posts.component';
 
 @Component({
@@ -11,7 +11,7 @@ import { PostsComponent } from '../posts/posts.component';
 })
 
 export class SidenavComponent implements OnInit {
-  
+
 
   valueLikes: number = 0;
   highValueLikes: number = 100;
@@ -38,7 +38,7 @@ export class SidenavComponent implements OnInit {
     step: 10
   };
 
-  selectedType!: number;
+  private selectedType!: number;
 
   dateRange: Date[] = this.customDateRange();
   value: number = this.dateRange[0].getMonth();
@@ -80,9 +80,10 @@ export class SidenavComponent implements OnInit {
 
 
   }
-  updateType(){
-    console.log("success");
-    this.sharedService.sendUpdateTypeEvent(this.selectedType);
+
+  updateType() {
+      console.log(this.selectedType)
+      this.sharedService.sendUpdateTypeEvent(this.selectedType);
   }
   sortByPage() {
     this.sharedService.sendSortByPageEvent();
@@ -106,7 +107,15 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  limitLikes(){
-    this.sharedService.sendLimitLikes({bottom:this.valueLikes,top:this.highValueLikes});
+  limitLikes() {
+    this.sharedService.sendLimitLikes({ bottom: this.valueLikes, top: this.highValueLikes });
+  }
+
+  limitShares() {
+    this.sharedService.sendLimitShares({ bottom: this.valueShares, top: this.highValueShares });
+  }
+
+  limitComments() {
+    this.sharedService.sendLimitComments({ bottom: this.valueComments, top: this.highValueComments });
   }
 }
