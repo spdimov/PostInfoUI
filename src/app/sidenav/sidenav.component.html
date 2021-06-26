@@ -5,7 +5,7 @@
     <input type="text" [(ngModel)]="keywords" [ngModelOptions]="{standalone: true}">
     <button (click)="sortByKeywords()">Search</button>
   </form>
-  
+
   Sort by<br>
   <button (click)="sortByLikes()">Likes</button>
   <button (click)="sortByShares()">Shares</button>
@@ -13,16 +13,17 @@
   <button (click)="sortByPage()">Page name</button><br>
 
   Limit Likes
-  <ngx-slider [(value)]="valueLikes" [(highValue)]="highValueLikes" [options]="optionsLikes" (userChange)="limitLikes()"></ngx-slider>
+  <ngx-slider [(value)]="valueLikes" [(highValue)]="highValueLikes" [options]="optionsLikes"
+    (userChange)="limitLikes()"></ngx-slider>
   Limit Shares
-  <ngx-slider [(value)]="valueShares" [(highValue)]="highValueShares" [options]="optionsShares"></ngx-slider>
+  <ngx-slider [(value)]="valueShares" [(highValue)]="highValueShares" [options]="optionsShares"
+    (userChange)="limitShares()"></ngx-slider>
   Limit Comments
-  <ngx-slider [(value)]="valueComments" [(highValue)]="highValueComments" [options]="optionsComments"></ngx-slider>
+  <ngx-slider [(value)]="valueComments" [(highValue)]="highValueComments" [options]="optionsComments"
+    (userChange)="limitComments()"></ngx-slider>
   Limit by<br>
   <ngx-slider [(value)]="value" [(highValue)]="highValueDate" [options]="optionsDate"></ngx-slider>
- <mat-radio-group
-    class="post-type-radio-group"
-    [(ngModel)]="selectedType">
+  <mat-radio-group class="post-type-radio-group" [(ngModel)]="selectedType">
     <mat-radio-button (click)="updateType()" class="post-type-radio-button" [value]="2">Both</mat-radio-button>
     <mat-radio-button (click)="updateType()" class="post-type-radio-button" [value]="0">Video</mat-radio-button>
     <mat-radio-button (click)="updateType()" class="post-type-radio-button" [value]="1">Image</mat-radio-button>
