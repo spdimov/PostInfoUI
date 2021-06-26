@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
-import { Options,LabelType } from "@angular-slider/ngx-slider";
+import { Options, LabelType } from "@angular-slider/ngx-slider";
 import { PostsComponent } from '../posts/posts.component';
+
 @Component({
   selector: 'sidenav',
   templateUrl: './sidenav.component.html',
@@ -9,6 +10,7 @@ import { PostsComponent } from '../posts/posts.component';
 })
 
 export class SidenavComponent implements OnInit {
+
   valueLikes: number = 0;
   highValueLikes: number = 100;
   optionsLikes: Options = {
@@ -24,7 +26,7 @@ export class SidenavComponent implements OnInit {
     ceil: 100,
     step: 10
   };
-  
+
 
   valueShares: number = 0;
   highValueShares: number = 100;
@@ -36,7 +38,7 @@ export class SidenavComponent implements OnInit {
 
   dateRange: Date[] = this.customDateRange();
   value: number = this.dateRange[0].getMonth();
-  highValueDate: number = this.dateRange[this.dateRange.length-1].getTime();
+  highValueDate: number = this.dateRange[this.dateRange.length - 1].getTime();
   optionsDate: Options = {
     stepsArray: this.dateRange.map((date: Date) => {
       return { value: date.getTime() };
@@ -49,33 +51,33 @@ export class SidenavComponent implements OnInit {
   @Input()
   private keywords: string | undefined
   constructor(private sharedService: SharedService) { }
+
   ngOnInit(): void {
   }
-
 
   customDateRange(): Date[] {
     const dates: Date[] = [];
     var today = new Date;
-    var currYear : number = +today.getFullYear();
-    for (let j: number = 0; j < 12; j++){
-      for (let i: number = 1; i <=  31; i++) {
-       dates.push(new Date(currYear-1, j, i));
-     }
+    var currYear: number = +today.getFullYear();
+    for (let j: number = 0; j < 12; j++) {
+      for (let i: number = 1; i <= 31; i++) {
+        dates.push(new Date(currYear - 1, j, i));
+      }
     }
     loop1:
-    for (let j: number = 0; j < 12; j++){
-    loop2:
+    for (let j: number = 0; j < 12; j++) {
+      loop2:
       for (let i: number = 0; i < 31; i++) {
         dates.push(new Date(currYear, j, i));
-       if (j==today.getMonth() && i==today.getDate()) break loop1;
-     }
+        if (j == today.getMonth() && i == today.getDate()) break loop1;
+      }
     }
     return dates;
-    
-    
+
+
   }
 
-  sortByPage(){
+  sortByPage() {
     this.sharedService.sendSortByPageEvent();
   }
 
@@ -90,9 +92,14 @@ export class SidenavComponent implements OnInit {
   sortByComments() {
     this.sharedService.sendSortByCommentsEvent();
   }
+
   sortByKeywords() {
-    if(this.keywords){
-    this.sharedService.sendSearchByKewords(this.keywords);
+    if (this.keywords) {
+      this.sharedService.sendSearchByKewords(this.keywords);
     }
+  }
+
+  limitLikes(){
+    this.sharedService.sendLimitLikes({bottom:this.valueLikes,top:this.highValueLikes});
   }
 }
