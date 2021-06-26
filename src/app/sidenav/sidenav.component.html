@@ -21,6 +21,14 @@
   <ngx-slider [(value)]="valueComments" [(highValue)]="highValueComments" [options]="optionsComments"></ngx-slider>
   Limit by<br>
   <ngx-slider [(value)]="value" [(highValue)]="highValueDate" [options]="optionsDate"></ngx-slider>
+ <mat-radio-group
+    class="post-type-radio-group"
+    [(ngModel)]="selectedType">
+    <mat-radio-button class="post-type-radio-button" [value]="2">Both</mat-radio-button>
+    <mat-radio-button class="post-type-radio-button" [value]="0">Video</mat-radio-button>
+    <mat-radio-button class="post-type-radio-button" [value]="1">Image</mat-radio-button>
+  </mat-radio-group>
+  <div>Your favorite season is: {{selectedType}}</div>
 
   <input type="submit" value="Submit" name="Reset">
 </div>

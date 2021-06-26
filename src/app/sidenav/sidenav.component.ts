@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { Options,LabelType } from "@angular-slider/ngx-slider";
+import {MatRadioModule} from '@angular/material/radio';
 import { PostsComponent } from '../posts/posts.component';
 @Component({
   selector: 'sidenav',
@@ -9,6 +10,7 @@ import { PostsComponent } from '../posts/posts.component';
 })
 
 export class SidenavComponent implements OnInit {
+  
   valueLikes: number = 0;
   highValueLikes: number = 100;
   optionsLikes: Options = {
@@ -33,6 +35,8 @@ export class SidenavComponent implements OnInit {
     ceil: 100,
     step: 10
   };
+
+  selectedType!: number;
 
   dateRange: Date[] = this.customDateRange();
   value: number = this.dateRange[0].getMonth();

@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
@@ -28,7 +29,8 @@ import { ConvertURLthumbPipe } from './pipes/convert-urlthumb.pipe';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    NgxSliderModule
+    NgxSliderModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
