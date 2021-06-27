@@ -14,27 +14,27 @@ export class SidenavComponent implements OnInit {
 
 
   valueLikes: number = 0;
-  highValueLikes: number = 100;
+  highValueLikes: number = 100000;
   optionsLikes: Options = {
     floor: 0,
-    ceil: 10000,
+    ceil: 100000,
     step: 100
   };
 
   valueComments: number = 0;
-  highValueComments: number = 100;
+  highValueComments: number = 100000;
   optionsComments: Options = {
     floor: 0,
-    ceil: 10000,
+    ceil: 100000,
     step: 100
   };
 
 
   valueShares: number = 0;
-  highValueShares: number = 100;
+  highValueShares: number = 100000;
   optionsShares: Options = {
     floor: 0,
-    ceil: 10000,
+    ceil: 100000,
     step: 100
   };
 
