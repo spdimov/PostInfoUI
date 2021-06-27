@@ -1,6 +1,6 @@
 export interface Post{
     type:number,
-    url:string,
+    URL:string,
     text:string,
     likes:number,
     comments:number,

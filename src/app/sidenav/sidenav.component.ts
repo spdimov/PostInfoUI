@@ -85,10 +85,7 @@ export class SidenavComponent implements OnInit {
       console.log(this.selectedType)
       this.sharedService.sendUpdateTypeEvent(this.selectedType);
   }
-  sortByPage() {
-    this.sharedService.sendSortByPageEvent();
-  }
-
+  
   sortByLikes() {
     this.sharedService.sendSortByLikesEvent();
   }

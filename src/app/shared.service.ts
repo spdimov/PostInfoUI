@@ -21,14 +21,6 @@ export class SharedService {
   
   constructor() { }
 
-  sendSortByPageEvent() {
-    this.pageName.next();
-  }
-
-  getSortByPageEvent(): Observable<any> {
-    return this.pageName.asObservable();
-  }
-
   sendSortByLikesEvent() {
     this.likes.next();
   }

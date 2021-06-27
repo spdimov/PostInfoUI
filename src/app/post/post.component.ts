@@ -16,7 +16,7 @@ export class PostComponent implements OnInit {
   openFacebookUrl() {
     if (this.post) {
       window.open(
-        this.post.url, "_blank");
+        this.post.URL, "_blank");
     }
   }
 
