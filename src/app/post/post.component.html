@@ -4,7 +4,8 @@
         <div class="page_name"><img src="{{post.URL | convertURL}}">
             <h3>{{post.page}}</h3>
         </div>
-        <div class="post_pic"> <img class="thumb" src="{{post.URL | convertURLthumb}}"></div>
+        <div class="post_pic"> <img class="thumb" src="{{post.URL | convertURLthumb}}">
+        <img *ngIf="post.type" class="playbutton" src="assets/img/playbutton.png"></div>
         <div class="post_desc">{{post.text}}</div>
         <div class="lsc_ind">
             <img src="../../assets/img/likes.png">
