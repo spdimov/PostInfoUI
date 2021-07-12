@@ -82,10 +82,12 @@ export class SidenavComponent implements OnInit {
   }
 
   updateType() {
-      console.log(this.selectedType)
       this.sharedService.sendUpdateTypeEvent(this.selectedType);
   }
-  
+  resetPosts(){
+    this.sharedService.sendResetPostsEvent();
+
+  }
   sortByLikes() {
     this.sharedService.sendSortByLikesEvent();
   }

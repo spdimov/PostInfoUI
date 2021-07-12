@@ -16,6 +16,7 @@ export class PostsComponent implements OnInit {
   clickEventSubscription: Subscription | undefined;
   posts: Post[] = []
   postsCopy: Post[] = []
+  postsShowType: Post[] = []
   searchResult: Post[] = []
   limitResult: Post[] = []
 
@@ -31,14 +32,19 @@ export class PostsComponent implements OnInit {
     this.clickEventSubscription = this.sharedService.getUpdateTypeEvent().subscribe(selectedType => { this.updateType(selectedType); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getLimitShares().subscribe(limit => { this.limitByShares(limit); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getLimitComments().subscribe(limit => { this.limitByComments(limit); this.show = 20; })
+    this.clickEventSubscription = this.sharedService.getResetPostsEvent().subscribe(() => {this.resetPosts(); this.show = 20; })
   }
 
   ngOnInit(): void {
     this.getPosts();
+    console.log(this.postsCopy[1]);
   }
-  
-  updateType(selectedType: number): void {
+  resetPosts() : void{
     this.posts = this.postsCopy;
+    this.postsShowType = this.posts;
+  }
+  updateType(selectedType: number): void {
+    this.posts = this.postsShowType;
     this.searchResult = [];
 
     this.posts.forEach(post => {
@@ -50,7 +56,6 @@ export class PostsComponent implements OnInit {
   }
 
   getMinMaxLikes(): [number, number] {
-    console.log(this.posts[1]);
     this.postsCopy.sort((a, b) => {
       if (a.likes < b.likes) { return 1; }
       if (a.likes > b.likes) { return -1; }
@@ -61,8 +66,8 @@ export class PostsComponent implements OnInit {
     return [min, max];
   }
 
-  async getPosts(): Promise<void> {
-    this.postsService.getPosts().subscribe(posts => { this.posts = posts; this.postsCopy = posts; console.log(new Date()) });
+  getPosts(): void {
+    this.postsService.getPosts().subscribe(posts => { this.posts = posts; this.postsCopy = posts;});
   }
 
   sortByPageName(): void {
@@ -98,7 +103,6 @@ export class PostsComponent implements OnInit {
   }
 
   getByKeywords(keywords: string): void {
-    this.posts = this.postsCopy;
     this.searchResult = [];
     keywords = keywords.trim();
     var keywordsArr = keywords.split(" ");
@@ -112,10 +116,10 @@ export class PostsComponent implements OnInit {
     });
 
     this.posts = this.searchResult;
+    this.postsShowType = this.posts;
   }
 
   limitByLikes(limit: Limit): void {
-    this.posts = this.postsCopy;
     this.sortByLikes();
     this.limitResult = [];
     
@@ -126,10 +130,10 @@ export class PostsComponent implements OnInit {
     });
 
     this.posts = this.limitResult;
+    this.postsShowType = this.posts;
   }
 
   limitByShares(limit: Limit): void {
-    this.posts = this.postsCopy;
     this.sortByShares();
     this.limitResult = [];
 
@@ -140,10 +144,10 @@ export class PostsComponent implements OnInit {
     });
 
     this.posts = this.limitResult;
+    this.postsShowType = this.posts;
   }
 
   limitByComments(limit: Limit): void {
-    this.posts = this.postsCopy;
     this.sortByComments();
     this.limitResult = [];
 
@@ -154,6 +158,7 @@ export class PostsComponent implements OnInit {
     });
 
     this.posts = this.limitResult;
+    this.postsShowType = this.posts;
   }
 
   onScroll() {

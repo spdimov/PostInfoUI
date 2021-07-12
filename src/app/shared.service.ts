@@ -9,6 +9,7 @@ import { Limit } from './limit';
 export class SharedService {
 
   private pageName = new Subject<any>();
+  private posts = new Subject<any>();
   private likes = new Subject<any>();
   private shares = new Subject<any>();
   private comments = new Subject<any>();
@@ -44,7 +45,13 @@ export class SharedService {
   getSortByCommentsEvent(){
     return this.comments.asObservable();
   }
+  sendResetPostsEvent(){
+    this.posts.next();
+  }
 
+  getResetPostsEvent(){
+    return this.posts.asObservable();
+  }
   sendSearchByKewords(keywords:string){
     this.keywords.next(keywords);
   }
@@ -58,7 +65,6 @@ export class SharedService {
   }
 
   getUpdateTypeEvent(){
-    console.log("succ")
     return this.selectedType.asObservable();
   }
 
