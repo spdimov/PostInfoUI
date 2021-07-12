@@ -159,7 +159,6 @@ export class PostsComponent implements OnInit {
   onScroll() {
     let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
     let max = document.documentElement.scrollHeight;
-
     if (pos >= max) {
       this.show = this.show + 20;
     }
