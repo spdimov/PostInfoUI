@@ -21,7 +21,7 @@
   <ngx-slider [(value)]="valueComments" [(highValue)]="highValueComments" [options]="optionsComments"
     (userChange)="limitComments()"></ngx-slider>
   Limit by<br>
-  <ngx-slider [(value)]="value" [(highValue)]="highValueDate" [options]="optionsDate"></ngx-slider>
+  <ngx-slider [(value)]="valueDate" [(highValue)]="highValueDate" [options]="optionsDate" (userChange)="limitDate()"></ngx-slider>
     <mat-radio-group class="post-type-radio-group" [(ngModel)]="selectedType">
     <mat-radio-button *ngFor="let a of radio_opts" (change)="updateType($event)" class="post-type-radio-button" [value]="a">{{a}}</mat-radio-button>
   </mat-radio-group>

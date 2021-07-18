@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Limit } from '../limit';
+import { Limit, DateLimit } from '../limit';
 import { Post } from '../post';
 import { PostsService } from '../posts.service';
 import { SharedService } from '../shared.service';
@@ -32,6 +32,7 @@ export class PostsComponent implements OnInit {
     this.clickEventSubscription = this.sharedService.getUpdateTypeEvent().subscribe(selectedType => { this.updateType(selectedType); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getLimitShares().subscribe(limit => { this.limitByShares(limit); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getLimitComments().subscribe(limit => { this.limitByComments(limit); this.show = 20; })
+    this.clickEventSubscription = this.sharedService.getLimitDate().subscribe(limit => { this.limitByDate(limit); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getResetPostsEvent().subscribe(() => {this.resetPosts(); this.show = 20; })
   }
 
@@ -115,7 +116,7 @@ export class PostsComponent implements OnInit {
     keywords = keywords.trim();
     var keywordsArr = keywords.split(" ");
 
-    this.posts.forEach(post => {
+    this.postsCopy.forEach(post => {
       keywordsArr.forEach(keyword => {
         if (post.page.toUpperCase().includes(keyword.toUpperCase()) || post.text.toUpperCase().includes(keyword.toUpperCase())) {
           this.searchResult.push(post);
@@ -168,7 +169,9 @@ export class PostsComponent implements OnInit {
     this.posts = this.limitResult;
     this.postsShowType = this.posts;
   }
-
+  limitByDate(limit: DateLimit) : void{
+    console.log(limit);
+  }
   onScroll() {
     let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
     let max = document.documentElement.scrollHeight;

@@ -43,7 +43,7 @@ export class SidenavComponent implements OnInit {
   radio_opts = ["Both", "Image", "Video"];
 
   dateRange: Date[] = this.customDateRange();
-  value: number = this.dateRange[0].getMonth();
+  valueDate: number = this.dateRange[0].getMonth();
   highValueDate: number = this.dateRange[this.dateRange.length - 1].getTime();
   optionsDate: Options = {
     stepsArray: this.dateRange.map((date: Date) => {
@@ -118,5 +118,10 @@ export class SidenavComponent implements OnInit {
 
   limitComments() {
     this.sharedService.sendLimitComments({ bottom: this.valueComments, top: this.highValueComments });
+  }
+  limitDate(){
+    console.log(this.valueDate);
+    console.log(this.highValueDate);
+   // this.sharedService.sendLimitDate({ bottom: this.valueDate, top: this.highValueDate});
   }
 }

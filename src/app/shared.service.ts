@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { Observable, Subject } from 'rxjs';
-import { Limit } from './limit';
+import { DateLimit, Limit } from './limit';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,7 @@ export class SharedService {
   private limitLikes = new Subject<Limit>();
   private limitShares = new Subject<Limit>();
   private limitComments = new Subject<Limit>();
+  private limitDate = new Subject<DateLimit>();
   private selectedType = new Subject<string>();
 
   
@@ -90,6 +91,14 @@ export class SharedService {
 
   getLimitComments(){
     return this.limitComments.asObservable();
+  }
+
+  getLimitDate(){
+    return this.limitDate.asObservable();
+  }
+  
+  sendLimitDate(limit:DateLimit){
+    this.limitDate.next(limit);
   }
   
 }
