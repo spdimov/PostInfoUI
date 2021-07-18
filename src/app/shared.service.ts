@@ -17,7 +17,7 @@ export class SharedService {
   private limitLikes = new Subject<Limit>();
   private limitShares = new Subject<Limit>();
   private limitComments = new Subject<Limit>();
-  private selectedType = new Subject<number>();
+  private selectedType = new Subject<string>();
 
   
   constructor() { }
@@ -60,7 +60,7 @@ export class SharedService {
     return this.keywords.asObservable();
   }
 
-  sendUpdateTypeEvent(selectedType: number) {
+  sendUpdateTypeEvent(selectedType: string) {
     this.selectedType.next(selectedType);
   }
 

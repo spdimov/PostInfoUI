@@ -43,15 +43,23 @@ export class PostsComponent implements OnInit {
     this.posts = this.postsCopy;
     this.postsShowType = this.posts;
   }
-  updateType(selectedType: number): void {
+  updateType(selectedType: string): void {
     this.posts = this.postsShowType;
-    this.searchResult = [];
-
-    this.posts.forEach(post => {
-      if (post.type == selectedType || selectedType == 2) {
-        this.searchResult.push(post);
-      }
-    });
+    if (selectedType == "Both" || selectedType == null) {
+      this.searchResult = this.postsShowType;
+      console.log("showing all posts\n");
+    }
+    else {
+    let intSelectedType=0;
+    if (selectedType == "Image") intSelectedType=0;
+    if (selectedType == "Video") intSelectedType=1;
+      this.searchResult = [];
+      this.posts.forEach(post => {
+       if (post.type == intSelectedType) {
+         this.searchResult.push(post);
+        }
+     });
+    }
     this.posts = this.searchResult;
   }
 
@@ -67,7 +75,7 @@ export class PostsComponent implements OnInit {
   }
 
   getPosts(): void {
-    this.postsService.getPosts().subscribe(posts => { this.posts = posts; this.postsCopy = posts;});
+    this.postsService.getPosts().subscribe(posts => { this.posts = posts; this.postsCopy = posts; this.postsShowType = posts;});
   }
 
   sortByPageName(): void {

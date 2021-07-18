@@ -3,6 +3,7 @@ import { SharedService } from '../shared.service';
 import { Options, LabelType } from "@angular-slider/ngx-slider";
 import { MatRadioModule } from '@angular/material/radio';
 import { PostsComponent } from '../posts/posts.component';
+import { MatRadioChange } from '@angular/material/radio';
 
 @Component({
   selector: 'sidenav',
@@ -38,7 +39,8 @@ export class SidenavComponent implements OnInit {
     step: 100
   };
 
-  private selectedType!: number;
+  selectedType = "Both";
+  radio_opts = ["Both", "Image", "Video"];
 
   dateRange: Date[] = this.customDateRange();
   value: number = this.dateRange[0].getMonth();
@@ -53,7 +55,7 @@ export class SidenavComponent implements OnInit {
   };
 
   @Input()
-  private keywords: string | undefined
+  private keywords: string | undefined;
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
@@ -81,8 +83,8 @@ export class SidenavComponent implements OnInit {
 
   }
 
-  updateType() {
-      this.sharedService.sendUpdateTypeEvent(this.selectedType);
+  updateType($event: MatRadioChange) {
+      this.sharedService.sendUpdateTypeEvent($event.value);
   }
   resetPosts(){
     this.sharedService.sendResetPostsEvent();
