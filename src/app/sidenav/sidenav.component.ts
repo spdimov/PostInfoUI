@@ -4,6 +4,7 @@ import { Options, LabelType } from "@angular-slider/ngx-slider";
 import { MatRadioModule } from '@angular/material/radio';
 import { PostsComponent } from '../posts/posts.component';
 import { MatRadioChange } from '@angular/material/radio';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'sidenav',
@@ -49,7 +50,7 @@ export class SidenavComponent implements OnInit {
     stepsArray: this.dateRange.map((date: Date) => {
       return { value: date.getTime() };
     }),
-    translate: (value: number, label: LabelType): string => {
+    translate: (value: number): string => {
       return new Date(value).toDateString();
     }
   };
@@ -120,8 +121,8 @@ export class SidenavComponent implements OnInit {
     this.sharedService.sendLimitComments({ bottom: this.valueComments, top: this.highValueComments });
   }
   limitDate(){
-    console.log(this.valueDate);
-    console.log(this.highValueDate);
-   // this.sharedService.sendLimitDate({ bottom: this.valueDate, top: this.highValueDate});
+  const format = 'dd/MM/yyyy';
+  const locale = 'en-US';
+  this.sharedService.sendLimitDate({ bottom: formatDate(this.valueDate, format, locale), top: formatDate(this.highValueDate, format, locale)});
   }
 }

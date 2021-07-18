@@ -169,10 +169,11 @@ export class PostsComponent implements OnInit {
   }
 
   limitByDate(limit: DateLimit) : void{
-    this.limitResult = [];
 
+  console.log(limit);
+    this.limitResult = [];
     this.postsCopy.forEach(post => {
-      if (new Date(post.date) < limit.top && new Date(post.date) > limit.bottom){
+      if (new Date(post.date) < new Date(limit.top) && new Date(post.date) > new Date(limit.bottom)){
         this.limitResult.push(post);
       }
     })
