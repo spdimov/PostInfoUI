@@ -172,8 +172,19 @@ export class PostsComponent implements OnInit {
 
   console.log(limit);
     this.limitResult = [];
+    let limitTop = new Date(limit.top);
+    let limitBot = new Date(limit.bottom);
+     
+  console.log(limitTop);
+   console.log(limit.top);
+  console.log(limitTop.getTime());
+   console.log(limit.bottom);
+   console.log(limitBot);
+    console.log(limitBot.getTime());
+    
     this.postsCopy.forEach(post => {
-      if (new Date(post.date) < new Date(limit.top) && new Date(post.date) > new Date(limit.bottom)){
+    let currPostDate = new Date(post.date);
+    if (currPostDate.getTime() < limitTop.getTime() && currPostDate.getTime() > limitBot.getTime()){
         this.limitResult.push(post);
       }
     })

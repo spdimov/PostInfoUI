@@ -121,7 +121,7 @@ export class SidenavComponent implements OnInit {
     this.sharedService.sendLimitComments({ bottom: this.valueComments, top: this.highValueComments });
   }
   limitDate(){
-  const format = 'dd/MM/yyyy';
+  const format = 'yyyy-MM-dd';
   const locale = 'en-US';
   this.sharedService.sendLimitDate({ bottom: formatDate(this.valueDate, format, locale), top: formatDate(this.highValueDate, format, locale)});
   }
