@@ -39,7 +39,7 @@ export class SidenavComponent implements OnInit {
     ceil: 100000,
     step: 100
   };
-
+  selectedSort = "Date";
   selectedType = "Both";
   radio_opts = ["Both", "Image", "Video"];
 
@@ -91,15 +91,19 @@ export class SidenavComponent implements OnInit {
     this.sharedService.sendResetPostsEvent();
 
   }
-  sortByLikes() {
+  sortByDate($event: MatRadioChange) {
+    this.sharedService.sendSortByDateEvent();
+  }
+
+  sortByLikes($event: MatRadioChange) {
     this.sharedService.sendSortByLikesEvent();
   }
 
-  sortByShares() {
+  sortByShares($event: MatRadioChange) {
     this.sharedService.sendSortBySharesEvent();
   }
 
-  sortByComments() {
+  sortByComments($event: MatRadioChange) {
     this.sharedService.sendSortByCommentsEvent();
   }
 

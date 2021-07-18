@@ -1,15 +1,18 @@
 <div class="sidebar">
   <img (click)="resetPosts()" src="assets/img/logo.png">
-  Search by Keyword<br>
+  Search by Keywords<br>
   <form action="">
     <input type="text" [(ngModel)]="keywords" [ngModelOptions]="{standalone: true}">
     <button (click)="sortByKeywords()">Search</button>
   </form>
 
   Sort by<br>
-  <button (click)="sortByLikes()">Likes</button>
-  <button (click)="sortByShares()">Shares</button>
-  <button (click)="sortByComments()">Comments</button>
+  <mat-radio-group class="post-type-radio-group" [(ngModel)]="selectedSort">
+    <mat-radio-button (change)="sortByDate($event)" class="post-type-radio-button" value="Date">Date</mat-radio-button>
+    <mat-radio-button (change)="sortByLikes($event)" class="post-type-radio-button" value="Likes">Likes</mat-radio-button>
+    <mat-radio-button (change)="sortByShares($event)" class="post-type-radio-button" value="Shares">Shares</mat-radio-button>
+    <mat-radio-button (change)="sortByComments($event)" class="post-type-radio-button" value="Comments">Comments</mat-radio-button>
+  </mat-radio-group><br>
 
   Limit Likes
   <ngx-slider [(value)]="valueLikes" [(highValue)]="highValueLikes" [options]="optionsLikes"
@@ -25,5 +28,4 @@
     <mat-radio-group class="post-type-radio-group" [(ngModel)]="selectedType">
     <mat-radio-button *ngFor="let a of radio_opts" (change)="updateType($event)" class="post-type-radio-button" [value]="a">{{a}}</mat-radio-button>
   </mat-radio-group>
-  <input type="submit" value="Submit" name="Reset">
 </div>
