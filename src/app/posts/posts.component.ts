@@ -38,7 +38,6 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPosts();
-    console.log(this.postsCopy[1]);
   }
   resetPosts() : void{
     this.posts = this.postsCopy;
@@ -48,7 +47,6 @@ export class PostsComponent implements OnInit {
     this.posts = this.postsShowType;
     if (selectedType == "Both" || selectedType == null) {
       this.searchResult = this.postsShowType;
-      console.log("showing all posts\n");
     }
     else {
     let intSelectedType=0;
