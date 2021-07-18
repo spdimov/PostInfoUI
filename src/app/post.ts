@@ -8,4 +8,5 @@ export interface Post{
     page:string,
     thumbnail_img_url:string,
     profile_img_url:string,
+    date:string
 }
