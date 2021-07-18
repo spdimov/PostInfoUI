@@ -4,6 +4,7 @@ import { Limit, DateLimit } from '../limit';
 import { Post } from '../post';
 import { PostsService } from '../posts.service';
 import { SharedService } from '../shared.service';
+import { SidenavComponent } from '../sidenav/sidenav.component';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
+  public minMaxLikes = [0,0];
   public show = 20;
   clickEventSubscription: Subscription | undefined;
   posts: Post[] = []
@@ -19,6 +21,7 @@ export class PostsComponent implements OnInit {
   postsShowType: Post[] = []
   searchResult: Post[] = []
   limitResult: Post[] = []
+  
 
   constructor(
     private postsService: PostsService,
@@ -39,7 +42,7 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPosts();
+      this.getPosts();
   }
   resetPosts() : void{
     this.posts = this.postsCopy;
@@ -75,8 +78,16 @@ export class PostsComponent implements OnInit {
     return [min, max];
   }
 
-  getPosts(): void {
-    this.postsService.getPosts().subscribe(posts => { this.posts = posts; this.postsCopy = posts; this.postsShowType = posts;});
+  async getPosts() {
+    this.postsService.getPosts().then( 
+      posts => {
+      this.posts = posts;
+      this.postsCopy = posts;
+      this.postsShowType = posts;},)
+    .then(() => {this.minMaxLikes = this.getMinMaxLikes();
+    }
+    );
+
   }
 
   sortByPageName(): void {
@@ -92,7 +103,6 @@ export class PostsComponent implements OnInit {
       if (a.date > b.date) { return -1; }
       return 0;
     });
-    console.log("sort by date");
   }
   sortByLikes(): void {
     this.posts.sort((a, b) => {

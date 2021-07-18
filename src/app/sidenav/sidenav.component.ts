@@ -14,30 +14,29 @@ import { formatDate } from '@angular/common';
 
 export class SidenavComponent implements OnInit {
 
-
-  valueLikes: number = 0;
-  highValueLikes: number = 100000;
-  optionsLikes: Options = {
+  public valueLikes: number = 0
+  public highValueLikes: number = 1000000;
+  public optionsLikes: Options = {
     floor: 0,
-    ceil: 100000,
-    step: 100
+    ceil: 1000000,
+    step: 1000
   };
 
-  valueComments: number = 0;
-  highValueComments: number = 100000;
-  optionsComments: Options = {
+  public valueComments: number = 0;
+  public highValueComments: number = 1000000;
+  public optionsComments: Options = {
     floor: 0,
-    ceil: 100000,
-    step: 100
+    ceil: 1000000,
+    step: 1000
   };
 
 
-  valueShares: number = 0;
-  highValueShares: number = 100000;
-  optionsShares: Options = {
+  public valueShares: number = 0;
+  public highValueShares: number = 1000000;
+  public optionsShares: Options = {
     floor: 0,
-    ceil: 100000,
-    step: 100
+    ceil: 1000000,
+    step: 1000
   };
   selectedSort = "Date";
   selectedType = "Both";
@@ -57,6 +56,8 @@ export class SidenavComponent implements OnInit {
 
   @Input()
   private keywords: string | undefined;
+  static minMaxLikes: [number, number];
+  static optionsLikes: any;
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
