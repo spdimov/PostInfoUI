@@ -38,7 +38,6 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPosts();
-    console.log(this.postsCopy[1]);
   }
   resetPosts() : void{
     this.posts = this.postsCopy;
@@ -132,7 +131,7 @@ export class PostsComponent implements OnInit {
     this.sortByLikes();
     this.limitResult = [];
     
-    this.posts.forEach(post => {
+    this.postsCopy.forEach(post => {
       if (post.likes < limit.top && post.likes > limit.bottom) {
         this.limitResult.push(post)
       }
@@ -146,7 +145,7 @@ export class PostsComponent implements OnInit {
     this.sortByShares();
     this.limitResult = [];
 
-    this.posts.forEach(post => {
+    this.postsCopy.forEach(post => {
       if (post.shares < limit.top && post.shares > limit.bottom) {
         this.limitResult.push(post)
       }
@@ -160,17 +159,27 @@ export class PostsComponent implements OnInit {
     this.sortByComments();
     this.limitResult = [];
 
-    this.posts.forEach(post => {
+    this.postsCopy.forEach(post => {
       if (post.comments < limit.top && post.comments > limit.bottom) {
-        this.limitResult.push(post)
+        this.limitResult.push(post);
       }
     });
 
     this.posts = this.limitResult;
     this.postsShowType = this.posts;
   }
+
   limitByDate(limit: DateLimit) : void{
-    console.log(limit);
+    this.limitResult = [];
+
+    this.postsCopy.forEach(post => {
+      if (new Date(post.date) < limit.top && new Date(post.date) > limit.bottom){
+        this.limitResult.push(post);
+      }
+    })
+
+    this.posts = this.limitResult;
+    this.postsShowType = this.posts;
   }
   onScroll() {
     let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
