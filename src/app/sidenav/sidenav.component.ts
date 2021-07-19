@@ -15,27 +15,27 @@ import { formatDate } from '@angular/common';
 export class SidenavComponent implements OnInit {
 
   public valueLikes: number = 0
-  public highValueLikes: number = 1000000;
+  public highValueLikes: number = 200000;
   public optionsLikes: Options = {
     floor: 0,
-    ceil: 1000000,
+    ceil: 200000,
     step: 1000
   };
 
   public valueComments: number = 0;
-  public highValueComments: number = 1000000;
+  public highValueComments: number = 200000;
   public optionsComments: Options = {
     floor: 0,
-    ceil: 1000000,
+    ceil: 200000,
     step: 1000
   };
 
 
   public valueShares: number = 0;
-  public highValueShares: number = 1000000;
+  public highValueShares: number = 200000;
   public optionsShares: Options = {
     floor: 0,
-    ceil: 1000000,
+    ceil: 200000,
     step: 1000
   };
   selectedSort = "Date";
