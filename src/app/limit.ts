@@ -3,6 +3,6 @@ export interface Limit{
     top:number
 }
 export interface DateLimit{
-    bottom: Date;
-    top: Date;
+    bottom: string;
+    top: string;
 }

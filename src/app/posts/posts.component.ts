@@ -4,6 +4,7 @@ import { Limit, DateLimit } from '../limit';
 import { Post } from '../post';
 import { PostsService } from '../posts.service';
 import { SharedService } from '../shared.service';
+import { SidenavComponent } from '../sidenav/sidenav.component';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
+  public minMaxLikes = [0,0];
   public show = 20;
   clickEventSubscription: Subscription | undefined;
   posts: Post[] = []
@@ -19,11 +21,14 @@ export class PostsComponent implements OnInit {
   postsShowType: Post[] = []
   searchResult: Post[] = []
   limitResult: Post[] = []
+  
 
   constructor(
     private postsService: PostsService,
     private sharedService: SharedService,
   ) {
+    
+    this.clickEventSubscription = this.sharedService.getSortByDateEvent().subscribe(() => {this.sortByDate(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortByLikesEvent().subscribe(() => { this.sortByLikes(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortBySharesEvent().subscribe(() => { this.sortByShares(); this.show = 20; })
     this.clickEventSubscription = this.sharedService.getSortByCommentsEvent().subscribe(() => { this.sortByComments(); this.show = 20; })
@@ -37,7 +42,7 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPosts();
+      this.getPosts();
   }
   resetPosts() : void{
     this.posts = this.postsCopy;
@@ -47,7 +52,6 @@ export class PostsComponent implements OnInit {
     this.posts = this.postsShowType;
     if (selectedType == "Both" || selectedType == null) {
       this.searchResult = this.postsShowType;
-      console.log("showing all posts\n");
     }
     else {
     let intSelectedType=0;
@@ -74,8 +78,16 @@ export class PostsComponent implements OnInit {
     return [min, max];
   }
 
-  getPosts(): void {
-    this.postsService.getPosts().subscribe(posts => { this.posts = posts; this.postsCopy = posts; this.postsShowType = posts;});
+  async getPosts() {
+    this.postsService.getPosts().then( 
+      posts => {
+      this.posts = posts;
+      this.postsCopy = posts;
+      this.postsShowType = posts;},)
+    .then(() => {this.minMaxLikes = this.getMinMaxLikes();
+    }
+    );
+
   }
 
   sortByPageName(): void {
@@ -85,7 +97,13 @@ export class PostsComponent implements OnInit {
       return 0;
     });
   }
-
+  sortByDate(): void {
+    this.posts.sort((a, b) => {
+      if (a.date < b.date) { return 1; }
+      if (a.date > b.date) { return -1; }
+      return 0;
+    });
+  }
   sortByLikes(): void {
     this.posts.sort((a, b) => {
       if (a.likes < b.likes) { return 1; }
@@ -170,10 +188,22 @@ export class PostsComponent implements OnInit {
   }
 
   limitByDate(limit: DateLimit) : void{
-    this.limitResult = [];
 
+  console.log(limit);
+    this.limitResult = [];
+    let limitTop = new Date(limit.top);
+    let limitBot = new Date(limit.bottom);
+     
+  console.log(limitTop);
+   console.log(limit.top);
+  console.log(limitTop.getTime());
+   console.log(limit.bottom);
+   console.log(limitBot);
+    console.log(limitBot.getTime());
+    
     this.postsCopy.forEach(post => {
-      if (new Date(post.date) < limit.top && new Date(post.date) > limit.bottom){
+    let currPostDate = new Date(post.date);
+    if (currPostDate.getTime() < limitTop.getTime() && currPostDate.getTime() > limitBot.getTime()){
         this.limitResult.push(post);
       }
     })

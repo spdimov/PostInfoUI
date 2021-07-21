@@ -12,7 +12,8 @@ export class PostsService {
 
   constructor(private http: HttpClient) { }
 
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(this.postsUrl);
+  async getPosts(): Promise<Post[]> {
+    const data = await this.http.get<Post[]>(this.postsUrl).toPromise();
+    return data;
   }
 }

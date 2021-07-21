@@ -4,6 +4,7 @@ import { Options, LabelType } from "@angular-slider/ngx-slider";
 import { MatRadioModule } from '@angular/material/radio';
 import { PostsComponent } from '../posts/posts.component';
 import { MatRadioChange } from '@angular/material/radio';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'sidenav',
@@ -13,32 +14,31 @@ import { MatRadioChange } from '@angular/material/radio';
 
 export class SidenavComponent implements OnInit {
 
-
-  valueLikes: number = 0;
-  highValueLikes: number = 100000;
-  optionsLikes: Options = {
+  public valueLikes: number = 0
+  public highValueLikes: number = 200000;
+  public optionsLikes: Options = {
     floor: 0,
-    ceil: 100000,
-    step: 100
+    ceil: 200000,
+    step: 1000
   };
 
-  valueComments: number = 0;
-  highValueComments: number = 100000;
-  optionsComments: Options = {
+  public valueComments: number = 0;
+  public highValueComments: number = 200000;
+  public optionsComments: Options = {
     floor: 0,
-    ceil: 100000,
-    step: 100
+    ceil: 200000,
+    step: 1000
   };
 
 
-  valueShares: number = 0;
-  highValueShares: number = 100000;
-  optionsShares: Options = {
+  public valueShares: number = 0;
+  public highValueShares: number = 200000;
+  public optionsShares: Options = {
     floor: 0,
-    ceil: 100000,
-    step: 100
+    ceil: 200000,
+    step: 1000
   };
-
+  selectedSort = "Date";
   selectedType = "Both";
   radio_opts = ["Both", "Image", "Video"];
 
@@ -49,13 +49,15 @@ export class SidenavComponent implements OnInit {
     stepsArray: this.dateRange.map((date: Date) => {
       return { value: date.getTime() };
     }),
-    translate: (value: number, label: LabelType): string => {
+    translate: (value: number): string => {
       return new Date(value).toDateString();
     }
   };
 
   @Input()
   private keywords: string | undefined;
+  static minMaxLikes: [number, number];
+  static optionsLikes: any;
   constructor(private sharedService: SharedService) { }
 
   ngOnInit(): void {
@@ -90,15 +92,19 @@ export class SidenavComponent implements OnInit {
     this.sharedService.sendResetPostsEvent();
 
   }
-  sortByLikes() {
+  sortByDate($event: MatRadioChange) {
+    this.sharedService.sendSortByDateEvent();
+  }
+
+  sortByLikes($event: MatRadioChange) {
     this.sharedService.sendSortByLikesEvent();
   }
 
-  sortByShares() {
+  sortByShares($event: MatRadioChange) {
     this.sharedService.sendSortBySharesEvent();
   }
 
-  sortByComments() {
+  sortByComments($event: MatRadioChange) {
     this.sharedService.sendSortByCommentsEvent();
   }
 
@@ -120,8 +126,8 @@ export class SidenavComponent implements OnInit {
     this.sharedService.sendLimitComments({ bottom: this.valueComments, top: this.highValueComments });
   }
   limitDate(){
-    console.log(this.valueDate);
-    console.log(this.highValueDate);
-   // this.sharedService.sendLimitDate({ bottom: this.valueDate, top: this.highValueDate});
+  const format = 'yyyy-MM-dd';
+  const locale = 'en-US';
+  this.sharedService.sendLimitDate({ bottom: formatDate(this.valueDate, format, locale), top: formatDate(this.highValueDate, format, locale)});
   }
 }
