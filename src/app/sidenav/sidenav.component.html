@@ -7,12 +7,15 @@
   </form>
 
   Sort by<br>
-  <mat-radio-group class="post-type-radio-group" [(ngModel)]="selectedSort">
+  <div class="post-type-radio-group">
+  <mat-radio-group  [(ngModel)]="selectedSort">
     <mat-radio-button (change)="sortByDate($event)" class="post-type-radio-button" value="Date">Date</mat-radio-button>
-    <mat-radio-button (change)="sortByLikes($event)" class="post-type-radio-button" value="Likes">Likes</mat-radio-button>
+    <mat-radio-button (change)="sortByLikes($event)" class="post-type-radio-button" value="Likes">Likes</mat-radio-button><br>
     <mat-radio-button (change)="sortByShares($event)" class="post-type-radio-button" value="Shares">Shares</mat-radio-button>
     <mat-radio-button (change)="sortByComments($event)" class="post-type-radio-button" value="Comments">Comments</mat-radio-button>
-  </mat-radio-group><br>
+  </mat-radio-group>
+  </div>
+  <br>
 
   Limit Likes
   <ngx-slider [(value)]="valueLikes" [(highValue)]="highValueLikes" [options]="optionsLikes"
