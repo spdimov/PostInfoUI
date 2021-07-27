@@ -83,10 +83,8 @@ export class PostsComponent implements OnInit {
       posts => {
       this.posts = posts;
       this.postsCopy = posts;
-      this.postsShowType = posts;},)
-    .then(() => {this.minMaxLikes = this.getMinMaxLikes();
-    }
-    );
+      this.postsShowType = posts;},);
+    //.then(() => {this.minMaxLikes = this.getMinMaxLikes();}  );
 
   }
 
