@@ -1,0 +1,5 @@
+<div class="content" (window:scroll)="onScroll()">
+    <div *ngFor="let post of posts; let i = index;">
+        <app-post *ngIf=" i <= show" [post]=post></app-post>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="sidebar">
+  <img (click)="resetPosts()" src="assets/img/logo.png">
+  Search by Keywords<br>
+  <form action="">
+    <input type="text" [(ngModel)]="keywords" [ngModelOptions]="{standalone: true}">
+    <button (click)="sortByKeywords()">Search</button>
+  </form>
+
+  Sort by<br>
+  <div class="post-type-radio-group">
+  <mat-radio-group  [(ngModel)]="selectedSort">
+    <mat-radio-button (change)="sortByDate($event)" class="post-type-radio-button" value="Date">Date</mat-radio-button>
+    <mat-radio-button (change)="sortByLikes($event)" class="post-type-radio-button" value="Likes">Likes</mat-radio-button><br>
+    <mat-radio-button (change)="sortByShares($event)" class="post-type-radio-button" value="Shares">Shares</mat-radio-button>
+    <mat-radio-button (change)="sortByComments($event)" class="post-type-radio-button" value="Comments">Comments</mat-radio-button>
+  </mat-radio-group>
+  </div>
+  <br>
+
+  Limit Likes
+  <ngx-slider [(value)]="valueLikes" [(highValue)]="highValueLikes" [options]="optionsLikes"
+    (userChange)="limitLikes()"></ngx-slider>
+  Limit Shares
+  <ngx-slider [(value)]="valueShares" [(highValue)]="highValueShares" [options]="optionsShares"
+    (userChange)="limitShares()"></ngx-slider>
+  Limit Comments
+  <ngx-slider [(value)]="valueComments" [(highValue)]="highValueComments" [options]="optionsComments"
+    (userChange)="limitComments()"></ngx-slider>
+  Limit by<br>
+  <ngx-slider [(value)]="valueDate" [(highValue)]="highValueDate" [options]="optionsDate" (userChange)="limitDate()"></ngx-slider>
+    <mat-radio-group class="post-type-radio-group" [(ngModel)]="selectedType">
+    <mat-radio-button *ngFor="let a of radio_opts" (change)="updateType($event)" class="post-type-radio-button" [value]="a">{{a}}</mat-radio-button>
+  </mat-radio-group>
+</div>

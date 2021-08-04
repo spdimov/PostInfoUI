@@ -1,0 +1,26 @@
+<div *ngIf="post">
+
+    <div class="contentbox">
+        <div class="page_name"><img src="{{post.URL | convertURL}}">
+            <h3>{{post.page}}</h3>
+        </div>
+        <div class="post_pic"> <img class="thumb" src="{{post.URL | convertURLthumb}}">
+        <img *ngIf="post.type" class="playbutton" src="assets/img/playbutton.png"></div>
+        <div class="post_desc">{{post.text}}</div>
+        <div class="lsc_ind">
+            <img src="../../assets/img/likes.png">
+            <div class="likes">{{post.likes | convertNumber}}</div>
+
+            <img src="../../assets/img/shares.png">
+            <div class="shares">{{post.shares | convertNumber}}</div>
+
+            <img src="../../assets/img/comments.png">
+            <div class="comments">{{post.comments | convertNumber}}</div>
+
+            <div class="lm1" style="padding-top: 0; height: 100%; margin-top: 0px;">
+                <button class="lm_btn" style="vertical-align:middle" (click)="openFacebookUrl()">
+                    <span>Link </span>
+                </button>
+            </div>
+        </div>
+    </div>
