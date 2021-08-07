@@ -1,11 +1,15 @@
+//Install express server
 const express = require('express');
 const path = require('path');
+
 const app = express();
 
-app.use(express.static('/home/buy1get2/repositories/PostInfoUI/src'));
+// Serve only the static files form the dist directory
+app.use(express.static('./dist/postinfo'));
 
 app.get('/*', (req, res) =>
-    res.sendFile('app.component.html', {root: '/home/buy1get2/repositories/PostInfoUI/src/app'})
-    );
+    res.sendFile('app.component.html', {root: 'dist/postinfo/app'}),
+);
 
-app.listen(process.env.PORT || 9100);
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8082);
