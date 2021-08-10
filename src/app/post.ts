@@ -6,7 +6,5 @@ export interface Post{
     comments:number,
     shares:number,
     page:string,
-    thumbnail_img_url:string,
-    profile_img_url:string,
     date:string
 }
