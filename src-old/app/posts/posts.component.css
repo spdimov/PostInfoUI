@@ -1,0 +1,18 @@
+.content {
+  padding: 1px 16px;
+  background:#EDF5E1;
+  grid-area:content;
+  border-radius: 20px;
+  padding-top: 5px;
+  text-align: center;
+  align-items: stretch;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button {
+  margin-left: 200px;
+}
+
